@@ -31,8 +31,8 @@
     <module.name>brave</module.name>
 
     <main.basedir>${project.basedir}/..</main.basedir>
-    <main.java.version>1.6</main.java.version>
-    <main.signature.artifact>java16</main.signature.artifact>
+    <main.java.version>1.8</main.java.version>
+    <main.signature.artifact>java18</main.signature.artifact>
 
     <!-- disable errorprone cast warning as PendingSpans internally hacks equals -->
     <errorprone.args>-Xep:EqualsUnsafeCast:OFF</errorprone.args>

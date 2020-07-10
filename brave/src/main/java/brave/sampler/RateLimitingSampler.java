@@ -1,5 +1,5 @@
 /*
- * Copyright 2013-2019 The OpenZipkin Authors
+ * Copyright 2013-2020 The OpenZipkin Authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -42,7 +42,7 @@ import java.util.concurrent.atomic.AtomicLong;
  * across a second window. When the rate is at least 10/s, the yes decisions are equally split over
  * 10 deciseconds, allowing a roll-over of unused yes decisions up until the end of the second.
  */
-public class RateLimitingSampler extends Sampler {
+public class RateLimitingSampler implements Sampler {
   public static Sampler create(int tracesPerSecond) {
     if (tracesPerSecond < 0) throw new IllegalArgumentException("tracesPerSecond < 0");
     if (tracesPerSecond == 0) return Sampler.NEVER_SAMPLE;

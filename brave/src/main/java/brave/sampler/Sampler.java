@@ -1,5 +1,5 @@
 /*
- * Copyright 2013-2019 The OpenZipkin Authors
+ * Copyright 2013-2020 The OpenZipkin Authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -24,10 +24,9 @@ package brave.sampler;
  * <p>The instrumentation sampling decision happens once, at the root of the trace, and is
  * propagated downstream. For this reason, the algorithm needn't be consistent based on trace ID.
  */
-// abstract for factory-method support on Java language level 7
-public abstract class Sampler {
+public interface Sampler {
 
-  public static final Sampler ALWAYS_SAMPLE = new Sampler() {
+  Sampler ALWAYS_SAMPLE = new Sampler() {
     @Override public boolean isSampled(long traceId) {
       return true;
     }
@@ -37,7 +36,7 @@ public abstract class Sampler {
     }
   };
 
-  public static final Sampler NEVER_SAMPLE = new Sampler() {
+  Sampler NEVER_SAMPLE = new Sampler() {
     @Override public boolean isSampled(long traceId) {
       return false;
     }
@@ -52,7 +51,7 @@ public abstract class Sampler {
    *
    * @param traceId The trace ID to be decided on, can be ignored
    */
-  public abstract boolean isSampled(long traceId);
+  boolean isSampled(long traceId);
 
   /**
    * Returns a sampler, given a probability expressed as a percentage.
@@ -62,7 +61,7 @@ public abstract class Sampler {
    *
    * @param probability probability a trace will be sampled. minimum is 0.01, or 1% of traces
    */
-  public static Sampler create(float probability) {
+  static Sampler create(float probability) {
     return CountingSampler.create(probability);
   }
 }

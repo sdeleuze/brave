@@ -1,5 +1,5 @@
 /*
- * Copyright 2013-2019 The OpenZipkin Authors
+ * Copyright 2013-2020 The OpenZipkin Authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -28,7 +28,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * that it is accurate in units of 100 traces. At runtime, this loops through the bitset, returning
  * the value according to a counter.
  */
-public final class CountingSampler extends Sampler {
+public final class CountingSampler implements Sampler {
 
   /**
    * @param probability probability a request will result in a new trace. 0 means never sample, 1

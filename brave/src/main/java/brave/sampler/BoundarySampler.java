@@ -1,5 +1,5 @@
 /*
- * Copyright 2013-2019 The OpenZipkin Authors
+ * Copyright 2013-2020 The OpenZipkin Authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -29,7 +29,7 @@ import java.util.Random;
  *
  * <p>Based on https://github.com/twitter/finagle/blob/b6b1d0414fa24ed0c8bb5112985a4e9c9bcd3c9e/finagle-zipkin-core/src/main/scala/com/twitter/finagle/zipkin/core/Sampler.scala#L68
  */
-public final class BoundarySampler extends Sampler {
+public final class BoundarySampler implements Sampler {
   static final long SALT = new Random().nextLong();
 
   /**
